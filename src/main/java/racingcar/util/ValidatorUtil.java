@@ -8,4 +8,9 @@ public class ValidatorUtil {
                 !carName.isEmpty() &&
                 carName.length() <= 5;
     }
+
+    public static boolean forwardNumber(Integer forwardNumber) {
+        return forwardNumber >= 0 &&
+                forwardNumber <= 9;
+    }
 }
