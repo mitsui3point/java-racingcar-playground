@@ -16,4 +16,5 @@ public class Round {
     public Movement getMovement() {
         return movement;
     }
+
 }
