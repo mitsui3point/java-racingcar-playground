@@ -1,6 +1,5 @@
-package util;
+package calculator;
 
-import java.util.Arrays;
 import java.util.Objects;
 
 public class Result {
