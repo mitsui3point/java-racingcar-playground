@@ -17,4 +17,10 @@ public class Round {
         return movement;
     }
 
+    @Override
+    public String toString() {
+        return "Round{" +
+                "movement=" + movement +
+                '}';
+    }
 }

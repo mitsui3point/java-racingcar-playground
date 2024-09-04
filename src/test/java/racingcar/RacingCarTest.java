@@ -1,16 +1,46 @@
 package racingcar;
 
+import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class RacingCarTest {
+
+    @Test
+    void 자동차_경주_게임을_완료한_후_누가_우승했는지를_알려준다() {
+        Integer roundNum = 5;
+        List<String> names = Arrays.asList("honux", "crong", "pobi");
+        Racing racing = new Racing(roundNum, names);
+
+        List<Car> winners = racing.winners();
+        List<Car> exceptWinners = racing.getCars()
+                .stream()
+                .filter(p -> !winners.contains(p))
+                .collect(Collectors.toList());
+
+        if (winners.size() == 3) {
+            assertThat(winners.get(0).getTotal(roundNum)).isEqualTo(winners.get(1).getTotal(roundNum));
+            assertThat(winners.get(1).getTotal(roundNum)).isEqualTo(winners.get(2).getTotal(roundNum));
+        }
+        if (winners.size() == 2) {
+            assertThat(winners.get(0).getTotal(roundNum)).isEqualTo(winners.get(1).getTotal(roundNum));
+            assertThat(winners.get(0).getTotal(roundNum)).isGreaterThan(exceptWinners.get(0).getTotal(roundNum));
+        }
+        if (winners.size() == 1) {
+            assertThat(winners.get(0).getTotal(roundNum)).isGreaterThan(exceptWinners.get(0).getTotal(roundNum));
+            assertThat(winners.get(0).getTotal(roundNum)).isGreaterThan(exceptWinners.get(1).getTotal(roundNum));
+        }
+    }
 
     @ParameterizedTest
     @CsvSource(value = {
@@ -36,12 +66,28 @@ public class RacingCarTest {
                 new Round(new ForwardNumber(fourth)),
                 new Round(new ForwardNumber(fifth))
         );
-        Car actualCar = new Car(rounds);
+        Car actualCar = new Car("name", rounds);
         List<Round> actual = actualCar.getRounds();
         Integer total = actualCar.getTotal(roundIndex);
-        
+
         assertThat(actual).isEqualTo(rounds);
         assertThat(total).isEqualTo(expectedTotal);
+    }
+
+    @ParameterizedTest
+    @NullAndEmptySource
+    @ValueSource(strings = {"honuxd", "crongww", "pobiqq"})
+    void 자동차_이름은_5자초과_및_빈값은_등록할_수_없다(String name) {
+        assertThatThrownBy(() -> {
+            new Car(name, Arrays.asList());
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"honux", "crong", "pobi"})
+    void 자동차_이름을_등록한다(String name) {
+        Car car = new Car(name, Arrays.asList());
+        assertThat(car.getName()).isEqualTo(name);
     }
 
     @ParameterizedTest
