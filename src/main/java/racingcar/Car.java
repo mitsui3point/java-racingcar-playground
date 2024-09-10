@@ -1,5 +1,7 @@
 package racingcar;
 
+import java.util.Objects;
+
 public class Car {
 
     public static final int FORWARD_NUMBER = 4;
@@ -19,18 +21,27 @@ public class Car {
         this.position = INITIAL_POSITION;
     }
 
-    public void move() {
-        if (randomNumber() >= FORWARD_NUMBER) {
+    public Car(String name, int position) {
+        this.name = name;
+        this.position = position;
+    }
+
+    public void move(int randomNumber) {
+        if (randomNumber >= FORWARD_NUMBER) {
             position++;
         }
     }
 
-    protected int randomNumber() {
-        return Double.valueOf(Math.random() * 10)
-                .intValue();
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return position == car.position && Objects.equals(name, car.name);
     }
 
-    public int getPosition() {
-        return position;
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, position);
     }
 }
