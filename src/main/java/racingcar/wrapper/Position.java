@@ -6,10 +6,14 @@ public class Position {
     private int position;
 
     public Position(int position) {
-        if (position < 0) {
+        if (isGreaterThanZero(position)) {
             throw new IllegalArgumentException("위치값은 0 보다 작을 수 없습니다.");
         }
         this.position = position;
+    }
+
+    private boolean isGreaterThanZero(int position) {
+        return position < 0;
     }
 
     public void forward() {
