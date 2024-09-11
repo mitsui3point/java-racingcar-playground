@@ -29,9 +29,13 @@ public class RacingGame {
 
     public void racing(NumberGenerator numberGenerator) {
         for (int round = 0; round < this.finishRound; round++) {
-            for (Car car : cars) {
-                car.move(numberGenerator.generate());
-            }
+            moveCars(numberGenerator);
+        }
+    }
+
+    private void moveCars(NumberGenerator numberGenerator) {
+        for (Car car : cars) {
+            car.move(numberGenerator.generate());
         }
     }
 
