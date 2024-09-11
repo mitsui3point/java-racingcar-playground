@@ -1,5 +1,7 @@
 package racingcar;
 
+import racingcar.wrapper.Name;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,7 +16,7 @@ public class RacingGame {
                 .map(String::trim)
                 .collect(Collectors.toList());
 
-        names.forEach(name -> this.cars.add(new Car(name)));
+        names.forEach(name -> this.cars.add(new Car(new Name(name))));
     }
 
     public RacingGame(final List<Car> cars) {

@@ -1,6 +1,7 @@
 package racingcar;
 
 import org.junit.jupiter.api.Test;
+import racingcar.wrapper.Name;
 
 import java.util.Arrays;
 
@@ -16,9 +17,9 @@ public class RacingGameTest {
 
         RacingGame actual = new RacingGame(namesInput);
         RacingGame expected = new RacingGame(Arrays.asList(
-                new Car(names[0]),
-                new Car(names[1]),
-                new Car(names[2])
+                new Car(new Name(names[0])),
+                new Car(new Name(names[1])),
+                new Car(new Name(names[2]))
         ));
         assertThat(actual).isEqualTo(expected);
     }
