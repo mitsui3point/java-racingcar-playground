@@ -1,14 +1,11 @@
 package racingcar;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-import static org.assertj.core.api.Assertions.assertThatNoException;
 
 public class CarTest {
 
@@ -22,7 +19,7 @@ public class CarTest {
 
     @Test
     void 정지() {
-        Car car = new Car("test") ;
+        Car car = new Car("test");
         car.move(0);
         Car expected = new Car("test", 0);
         assertThat(car).isEqualTo(expected);
