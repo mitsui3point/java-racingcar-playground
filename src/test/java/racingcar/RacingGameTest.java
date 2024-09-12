@@ -10,6 +10,7 @@ import racingcar.wrapper.Position;
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class RacingGameTest {
 
@@ -54,5 +55,22 @@ public class RacingGameTest {
         assertThat(car1).isEqualTo(expectedCar1);
         assertThat(car2).isEqualTo(expectedCar2);
         assertThat(car3).isEqualTo(expectedCar3);
+    }
+
+    @Test
+    void 게임_참여_자동차가_없을_경우_오류가_발생한다() {
+        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
+            new RacingGame(Arrays.asList(new Car(new Name(""))), 5);
+        });
+        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
+            new RacingGame("", 5);
+        });
+    }
+
+    @Test
+    void 게임_최종_라운드가_1보다_작을_경우_오류가_발생한다() {
+        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
+            new RacingGame("pobi", 0);
+        });
     }
 }

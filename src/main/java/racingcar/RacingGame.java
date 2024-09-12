@@ -18,6 +18,9 @@ public class RacingGame {
                 .map(String::trim)
                 .collect(Collectors.toList());
 
+        if (finishRound < 1) {
+            throw new IllegalArgumentException("최종 라운드는 1 보다 작을 수 없습니다.");
+        }
         names.forEach(name -> this.cars.add(new Car(new Name(name))));
         this.finishRound = finishRound;
     }
