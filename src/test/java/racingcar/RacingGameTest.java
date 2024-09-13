@@ -22,12 +22,12 @@ public class RacingGameTest {
                 .map(String::trim)
                 .toArray(String[]::new);
 
-        RacingGame actual = new RacingGame(namesInput, 0);
+        RacingGame actual = new RacingGame(namesInput, 1);
         RacingGame expected = new RacingGame(Arrays.asList(
                 new Car(new Name(names[0])),
                 new Car(new Name(names[1])),
                 new Car(new Name(names[2]))
-        ), 0);
+        ), 1);
         assertThat(actual).isEqualTo(expected);
     }
 
