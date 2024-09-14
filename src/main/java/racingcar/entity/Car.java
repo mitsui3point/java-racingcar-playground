@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.entity;
 
 import racingcar.wrapper.Name;
 import racingcar.wrapper.Position;

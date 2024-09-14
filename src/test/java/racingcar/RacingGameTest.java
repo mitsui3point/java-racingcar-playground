@@ -3,7 +3,10 @@ package racingcar;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import racingcar.util.RandomNumberGenerator;
+import racingcar.entity.Car;
+import racingcar.entity.RacingGame;
+import racingcar.wrapper.Cars;
+import racingcar.wrapper.FinishRound;
 import racingcar.wrapper.Name;
 import racingcar.wrapper.Position;
 
@@ -23,11 +26,12 @@ public class RacingGameTest {
                 .toArray(String[]::new);
 
         RacingGame actual = new RacingGame(namesInput, 1);
-        RacingGame expected = new RacingGame(Arrays.asList(
+        RacingGame expected = new RacingGame(new Cars(
                 new Car(new Name(names[0])),
                 new Car(new Name(names[1])),
                 new Car(new Name(names[2]))
-        ), 1);
+        ), new FinishRound(1));
+        
         assertThat(actual).isEqualTo(expected);
     }
 
@@ -45,7 +49,7 @@ public class RacingGameTest {
         Car car2 = new Car(new Name(names[1]));
         Car car3 = new Car(new Name(names[2]));
 
-        RacingGame racingGame = new RacingGame(Arrays.asList(car1, car2, car3), finishRound);
+        RacingGame racingGame = new RacingGame(new Cars(car1, car2, car3), new FinishRound(finishRound));
         racingGame.racing(() -> randomNumber);
 
         Car expectedCar1 = new Car(new Name(names[0]), new Position(expectedPosition));
@@ -60,7 +64,7 @@ public class RacingGameTest {
     @Test
     void 게임_참여_자동차가_없을_경우_오류가_발생한다() {
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            new RacingGame(Arrays.asList(new Car(new Name(""))), 5);
+            new RacingGame(new Cars(new Car(new Name(""))), new FinishRound(5));
         });
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
             new RacingGame("", 5);
@@ -71,6 +75,9 @@ public class RacingGameTest {
     void 게임_최종_라운드가_1보다_작을_경우_오류가_발생한다() {
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
             new RacingGame("pobi", 0);
+        });
+        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
+            new RacingGame(new Cars(new Car(new Name("pobi"))), new FinishRound(0));
         });
     }
 }
