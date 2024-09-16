@@ -33,18 +33,16 @@ public class NameTest {
     }
 
     @Test
-    void 이름이_같으면_이름객체도_동일하다() {
+    void 이름_동등_비교() {
         Name actual = new Name("same");
         Name expected = new Name("same");
         assertThat(actual).isEqualTo(expected);
+
+        Name actualNe = new Name("same1");
+        Name expectedNe = new Name("same");
+        assertThat(actualNe).isNotEqualTo(expectedNe);
     }
 
-    @Test
-    void 이름이_다르면_이름객체도_동일하지_않다() {
-        Name actual = new Name("same1");
-        Name expected = new Name("same");
-        assertThat(actual).isNotEqualTo(expected);
-    }
 }
 
 

@@ -2,20 +2,22 @@ package racing;
 
 import racingcar.util.NumberCreator;
 import racingcar.wrapper.Name;
+import racingcar.wrapper.Position;
 
 import java.util.Objects;
 
 public class Car {
     private final Name name;
-    private int position = 0;
+    private final Position position;
 
     public Car(String name) {
         this.name = new Name(name);
+        this.position = new Position(0);
     }
 
     public Car(String name, int position) {
         this.name = new Name(name);
-        this.position = position;
+        this.position = new Position(position);
     }
 
     public void move(NumberCreator numberCreator) {
@@ -24,7 +26,7 @@ public class Car {
             throw new IllegalArgumentException("잘못된 전진숫자입니다. 전진 숫자 0 ~ 9.");
         }
         if (forwardNumber >= 4) {
-            position++;
+            position.forward();
         }
     }
 
@@ -33,7 +35,7 @@ public class Car {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Car car = (Car) o;
-        return position == car.position && Objects.equals(name, car.name);
+        return Objects.equals(name, car.name) && Objects.equals(position, car.position);
     }
 
     @Override
@@ -41,3 +43,4 @@ public class Car {
         return Objects.hash(name, position);
     }
 }
+

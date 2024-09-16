@@ -34,6 +34,21 @@ public class CarTest {
         });
     }
 
+    @Test
+    void 자동차_위치_입력() {
+        assertThatNoException().isThrownBy(() -> {
+            new Car("car", 1);
+        });
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {Integer.MIN_VALUE, -1})
+    void 자동차_위치_입력_실패(int position) {
+        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
+            new Car("Car", position);
+        });
+    }
+
     @ParameterizedTest
     @ValueSource(ints = {4, 5, 6, 7, 8, 9})
     void 자동차_전진(int forwardNumber) {
