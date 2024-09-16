@@ -44,7 +44,7 @@ public class Car {
     }
 
     public String print() {
-        return name.print() + ": " + position.print();
+        return name.print() + ":" + position.print();
     }
 }
 
