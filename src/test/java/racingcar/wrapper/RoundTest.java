@@ -4,8 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-import static org.assertj.core.api.Assertions.assertThatNoException;
+import static org.assertj.core.api.Assertions.*;
 
 public class RoundTest {
     @Test
@@ -21,5 +20,10 @@ public class RoundTest {
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
             new Round(round);
         });
+    }
+
+    @Test
+    void 동등_비교() {
+        assertThat(new Round(1)).isEqualTo(new Round(1));
     }
 }
