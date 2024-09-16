@@ -21,4 +21,29 @@ public class CarsTest {
         assertThat(cars).extracting("cars").isEqualTo(expected);
     }
 
+    @Test
+    void 동등_비교() {
+        String carsInput = "pobi, crong, honux";
+        Cars cars = new Cars(carsInput);
+        String carsInputEq = "pobi, crong, honux";
+        Cars carsEq = new Cars(carsInputEq);
+        assertThat(cars).isEqualTo(carsEq);
+
+        String carsInputNe = "pob, cron, honux";
+        Cars carsNe = new Cars(carsInputNe);
+        assertThat(cars).isNotEqualTo(carsNe);
+    }
+
+    @Test
+    void 모든_차들이_1회_이동한다() {
+        Cars cars = new Cars("pobi,crong,honux");
+        cars.moveAll(() -> 4);
+
+        List<Car> expected = Arrays.asList(
+                new Car("pobi", 1),
+                new Car("crong", 1),
+                new Car("honux", 1)
+        );
+        assertThat(cars).extracting("cars").isEqualTo(expected);
+    }
 }

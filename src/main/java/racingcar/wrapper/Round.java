@@ -1,5 +1,7 @@
 package racingcar.wrapper;
 
+import racingcar.util.RoundPlay;
+
 import java.util.Objects;
 
 public class Round {
@@ -23,5 +25,11 @@ public class Round {
     @Override
     public int hashCode() {
         return Objects.hash(round);
+    }
+
+    public void playEachRound(RoundPlay roundPlay) {
+        for (int current = 0; current < round; current++) {
+            roundPlay.apply();
+        }
     }
 }
