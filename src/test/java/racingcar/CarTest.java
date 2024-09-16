@@ -2,6 +2,9 @@ package racingcar;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 import racing.Car;
 
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
@@ -15,32 +18,20 @@ public class CarTest {
         });
     }
 
-    @Test
-    void 이름_길이_1글자_성공() {
+    @ParameterizedTest
+    @ValueSource(strings = {"1","crong"})
+    void 자동차_이름_길이_성공(String name) {
         assertThatNoException().isThrownBy(() -> {
-            new Car("1");
+            new Car(name);
         });
     }
 
-    @Test
-    void 이름_길이_5글자_성공() {
-        assertThatNoException().isThrownBy(() -> {
-            new Car("crong");
-        });
-    }
-
-    @Test
-    void 이름_길이_0글자_실패() {
+    @ParameterizedTest
+    @NullAndEmptySource
+    @ValueSource(strings = {"crong1"})
+    void 자동차_이름_길이_실패(String name) {
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            new Car("");
+            new Car(name);
         });
     }
-
-    @Test
-    void 이름_길이_6글자_실패() {
-        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            new Car("crong1");
-        });
-    }
-
 }
