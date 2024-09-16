@@ -1,6 +1,7 @@
-package racingcar.model;
+package racingcar.wrapper;
 
 import org.junit.jupiter.api.Test;
+import racingcar.model.Car;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,4 +20,5 @@ public class CarsTest {
 
         assertThat(cars).extracting("cars").isEqualTo(expected);
     }
+
 }

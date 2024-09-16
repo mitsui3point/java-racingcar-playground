@@ -1,4 +1,6 @@
-package racingcar.model;
+package racingcar.wrapper;
+
+import racingcar.model.Car;
 
 import java.util.Arrays;
 import java.util.List;
