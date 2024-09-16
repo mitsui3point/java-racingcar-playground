@@ -27,18 +27,18 @@ public class RacingGameTest {
     void 횟수만큼_자동차들이_전진한다() {
         RacingGame racingGame = new RacingGame("pobi,crong,honux", 3);
 
-        List<Car> cars = Arrays.asList(
+        List<Car> expectedCar = Arrays.asList(
                 new Car("pobi", 3),
                 new Car("crong", 3),
                 new Car("honux", 3)
         );
-        racingGame.play(() -> 4);
+        racingGame.play(car -> car.move(() -> 4));
         Round round = new Round(3);
 
         assertThat(racingGame)
                 .extracting("cars")
                 .extracting("cars")
-                .isEqualTo(cars);
+                .isEqualTo(expectedCar);
         assertThat(racingGame).extracting("round").isEqualTo(round);
     }
 }

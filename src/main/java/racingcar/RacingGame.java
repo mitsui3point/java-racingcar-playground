@@ -1,8 +1,10 @@
 package racingcar;
 
-import racingcar.util.NumberCreator;
+import racingcar.model.Car;
 import racingcar.wrapper.Cars;
 import racingcar.wrapper.Round;
+
+import java.util.function.Consumer;
 
 public class RacingGame {
     private final Cars cars;
@@ -13,7 +15,7 @@ public class RacingGame {
         this.round = new Round(round);
     }
 
-    public void play(NumberCreator numberCreator) {
-        round.eachRoundPlay(() -> cars.eachCarMove(numberCreator));
+    public void play(Consumer<Car> eachConsumer) {
+        round.eachRoundPlay(() -> cars.eachCar(eachConsumer));
     }
 }

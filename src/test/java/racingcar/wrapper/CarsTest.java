@@ -37,7 +37,7 @@ public class CarsTest {
     @Test
     void 모든_차들이_1회_이동한다() {
         Cars cars = new Cars("pobi,crong,honux");
-        cars.eachCarMove(() -> 4);
+        cars.eachCar(car -> car.move(() -> 4));
 
         List<Car> expected = Arrays.asList(
                 new Car("pobi", 1),
@@ -46,4 +46,5 @@ public class CarsTest {
         );
         assertThat(cars).extracting("cars").isEqualTo(expected);
     }
+
 }

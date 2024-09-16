@@ -35,7 +35,7 @@ public class RoundTest {
     void 횟수만큼_메서드를_실행한다() {
         Round round = new Round(2);
         Cars cars = new Cars("pobi,crong,honux");
-        round.eachRoundPlay(() -> cars.eachCarMove(() -> 4));
+        round.eachRoundPlay(() -> cars.eachCar(car -> car.move(() -> 4)));
 
         List<Car> expected = Arrays.asList(
                 new Car("pobi", 2),

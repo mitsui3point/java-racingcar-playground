@@ -1,11 +1,11 @@
 package racingcar.wrapper;
 
 import racingcar.model.Car;
-import racingcar.util.NumberCreator;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class Cars {
@@ -22,8 +22,8 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    public void eachCarMove(NumberCreator numberCreator) {
-        cars.forEach(car -> car.move(numberCreator));
+    public void eachCar(Consumer<Car> eachConsumer) {
+        cars.forEach(eachConsumer);
     }
 
     @Override
