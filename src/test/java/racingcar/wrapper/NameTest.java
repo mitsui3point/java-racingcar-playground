@@ -1,6 +1,9 @@
 package racingcar.wrapper;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -12,31 +15,20 @@ public class NameTest {
         });
     }
 
-    @Test
-    void 이름_길이_1글자_성공() {
+    @ParameterizedTest
+    @ValueSource(strings = {"1","crong"})
+    void 이름_길이_성공(String name) {
         assertThatNoException().isThrownBy(() -> {
-            new Name("1");
+            new Name(name);
         });
     }
 
-    @Test
-    void 이름_길이_5글자_성공() {
-        assertThatNoException().isThrownBy(() -> {
-            new Name("crong");
-        });
-    }
-
-    @Test
-    void 이름_길이_0글자_실패() {
+    @ParameterizedTest
+    @NullAndEmptySource
+    @ValueSource(strings = {"crong1"})
+    void 이름_길이_실패(String name) {
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            new Name("");
-        });
-    }
-
-    @Test
-    void 이름_길이_6글자_실패() {
-        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-            new Name("crong1");
+            new Name(name);
         });
     }
 
