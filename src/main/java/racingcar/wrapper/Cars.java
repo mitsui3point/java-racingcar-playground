@@ -35,6 +35,8 @@ public class Cars {
         return Objects.hash(cars);
     }
 
+    // TODO: remove,
+    // TODO: addFindByName
     public void moveAll(NumberCreator numberCreator) {
         cars.forEach(car -> car.move(numberCreator));
     }

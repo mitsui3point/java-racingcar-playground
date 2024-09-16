@@ -29,4 +29,8 @@ public class Name {
     public int hashCode() {
         return Objects.hash(name);
     }
+
+    public String print() {
+        return name;
+    }
 }

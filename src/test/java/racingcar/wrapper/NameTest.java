@@ -43,6 +43,14 @@ public class NameTest {
         assertThat(actualNe).isNotEqualTo(expectedNe);
     }
 
+    @Test
+    void 이름_출력() {
+        Name crong = new Name("crong");
+        String print = crong.print();
+        String expected = "crong";
+
+        assertThat(print).isEqualTo(expected);
+    }
 }
 
 

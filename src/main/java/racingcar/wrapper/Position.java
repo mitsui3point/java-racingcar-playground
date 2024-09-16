@@ -1,5 +1,7 @@
 package racingcar.wrapper;
 
+import racingcar.util.CurrentRoundPrinter;
+
 import java.util.Objects;
 
 public class Position {
@@ -10,6 +12,14 @@ public class Position {
             throw new IllegalArgumentException("위치는 0보다 작을 수 없습니다.");
         }
         this.position = position;
+    }
+
+    public void forward() {
+        position++;
+    }
+
+    public String print() {
+        return CurrentRoundPrinter.printPosition(position);
     }
 
     @Override
@@ -23,9 +33,5 @@ public class Position {
     @Override
     public int hashCode() {
         return Objects.hash(position);
-    }
-
-    public void forward() {
-        position++;
     }
 }

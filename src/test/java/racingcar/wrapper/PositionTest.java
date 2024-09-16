@@ -41,4 +41,13 @@ public class PositionTest {
 
         assertThat(actual).isEqualTo(expected);
     }
+
+    @Test
+    void 위치_출력() {
+        Position position = new Position(2);
+        String printPosition = position.print();
+        String expected = "--";
+
+        assertThat(printPosition).isEqualTo(expected);
+    }
 }

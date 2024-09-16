@@ -42,5 +42,9 @@ public class Car {
     public int hashCode() {
         return Objects.hash(name, position);
     }
+
+    public String print() {
+        return name.print() + ": " + position.print();
+    }
 }
 
