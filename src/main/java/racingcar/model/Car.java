@@ -1,4 +1,4 @@
-package racing;
+package racingcar.model;
 
 import racingcar.util.NumberCreator;
 import racingcar.wrapper.Name;
