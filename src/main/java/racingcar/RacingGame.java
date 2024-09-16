@@ -14,6 +14,6 @@ public class RacingGame {
     }
 
     public void play(NumberCreator numberCreator) {
-        cars.moveAll(numberCreator);
+        round.playEachRound(() -> cars.moveAll(numberCreator));
     }
 }

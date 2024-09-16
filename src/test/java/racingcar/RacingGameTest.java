@@ -24,7 +24,7 @@ public class RacingGameTest {
     }
 
     @Test
-    void 횟수만큼_자동차들이_전진한다(int forwardNumber) {
+    void 횟수만큼_자동차들이_전진한다() {
         RacingGame racingGame = new RacingGame("pobi,crong,honux", 3);
 
         List<Car> cars = Arrays.asList(
