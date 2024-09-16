@@ -27,7 +27,7 @@ public class Round {
         return Objects.hash(round);
     }
 
-    public void playEachRound(RoundPlay roundPlay) {
+    public void eachRoundPlay(RoundPlay roundPlay) {
         for (int current = 0; current < round; current++) {
             roundPlay.apply();
         }

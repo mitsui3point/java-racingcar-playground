@@ -22,6 +22,10 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
+    public void eachCarMove(NumberCreator numberCreator) {
+        cars.forEach(car -> car.move(numberCreator));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -33,11 +37,5 @@ public class Cars {
     @Override
     public int hashCode() {
         return Objects.hash(cars);
-    }
-
-    // TODO: remove,
-    // TODO: addFindByName
-    public void moveAll(NumberCreator numberCreator) {
-        cars.forEach(car -> car.move(numberCreator));
     }
 }

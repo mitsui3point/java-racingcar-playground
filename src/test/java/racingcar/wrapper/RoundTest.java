@@ -4,10 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.model.Car;
-import racingcar.util.RoundPlay;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
@@ -37,9 +35,7 @@ public class RoundTest {
     void 횟수만큼_메서드를_실행한다() {
         Round round = new Round(2);
         Cars cars = new Cars("pobi,crong,honux");
-        round.playEachRound(() -> {
-            cars.moveAll(() -> 4);
-        });
+        round.eachRoundPlay(() -> cars.eachCarMove(() -> 4));
 
         List<Car> expected = Arrays.asList(
                 new Car("pobi", 2),

@@ -37,7 +37,7 @@ public class CarsTest {
     @Test
     void 모든_차들이_1회_이동한다() {
         Cars cars = new Cars("pobi,crong,honux");
-        cars.moveAll(() -> 4);
+        cars.eachCarMove(() -> 4);
 
         List<Car> expected = Arrays.asList(
                 new Car("pobi", 1),
