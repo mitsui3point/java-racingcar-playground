@@ -117,4 +117,22 @@ public class CarTest {
         assertThat(actualEq).isTrue();
         assertThat(actualNe).isFalse();
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9})
+    void 랜덤번호는_0_9_사이어야_한다(int randomNumber) {
+        assertThatNoException().isThrownBy(() -> {
+            Car car = new Car("test");
+            car.move(() -> randomNumber);
+        });
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {-1,10})
+    void 랜덤번호는_0_9_사이가_아니면_오류발생(int randomNumber) {
+        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
+            Car car = new Car("test");
+            car.move(() -> randomNumber);
+        });
+    }
 }
