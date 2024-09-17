@@ -3,6 +3,10 @@ package racingcar.wrapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.model.Car;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -49,5 +53,20 @@ public class PositionTest {
         String expected = "--";
 
         assertThat(printPosition).isEqualTo(expected);
+    }
+
+    @Test
+    void 위치_비교() {
+        Position position = new Position(1);
+        Position positionLess = new Position(1);
+        Position positionGreater = new Position(2);
+
+        int compareMinus = positionLess.compare(positionGreater);
+        int comparePlus = positionGreater.compare(positionLess);
+        int compareZero = position.compare(position);
+
+        assertThat(compareMinus).isLessThan(0);
+        assertThat(comparePlus).isGreaterThan(0);
+        assertThat(compareZero).isEqualTo(0);
     }
 }

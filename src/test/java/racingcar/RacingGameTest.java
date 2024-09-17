@@ -41,4 +41,29 @@ public class RacingGameTest {
                 .isEqualTo(expectedCar);
         assertThat(racingGame).extracting("round").isEqualTo(round);
     }
+
+    @Test
+    void 자동차_경주_게임_우승자동차들을_추려낸다() {
+        RacingGame racingGame = new RacingGame("pobi,crong,honux", 3);
+
+        List<Car> expectedCar = Arrays.asList(
+                new Car("pobi", 3),
+                new Car("crong", 3)
+        );
+        racingGame.play(car -> {
+            if (car.print().contains("pobi")) {
+                car.move(() -> 4);
+                return;
+            }
+            if (car.print().contains("crong")) {
+                car.move(() -> 4);
+                return;
+            }
+            car.move(() -> 3);
+        });
+        Cars actualWinners = racingGame.winners();
+        Cars expectedWinners = Cars.of(expectedCar);
+
+        assertThat(actualWinners).isEqualTo(expectedWinners);
+    }
 }

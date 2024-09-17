@@ -1,7 +1,9 @@
 package racingcar.wrapper;
 
+import racingcar.model.Car;
 import racingcar.util.CurrentRoundPrinter;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Position {
@@ -13,6 +15,7 @@ public class Position {
         }
         this.position = position;
     }
+
 
     public void forward() {
         position++;
@@ -33,5 +36,9 @@ public class Position {
     @Override
     public int hashCode() {
         return Objects.hash(position);
+    }
+
+    public int compare(Position target) {
+        return this.position - target.position;
     }
 }

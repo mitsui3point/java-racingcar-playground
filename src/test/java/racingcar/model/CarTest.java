@@ -6,6 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.wrapper.Position;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -92,5 +93,28 @@ public class CarTest {
         String expected = name + ":" + printed;
 
         assertThat(carPrint).isEqualTo(expected);
+    }
+
+
+    @Test
+    void 자동차_간_위치_중_더_큰값을_반환한다() {
+        Car mycar = new Car("mycar", 2);
+        Car play1 = new Car("play1", 1);
+
+        Position actual = mycar.greaterPosition(play1);
+        Position expected = new Position(2);
+
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    void 자동차_간_위치가_동일한지_확인한다() {
+        Car mycar = new Car("mycar", 1);
+
+        boolean actualEq = mycar.equalPosition(new Position(1));
+        boolean actualNe = mycar.equalPosition(new Position(2));
+
+        assertThat(actualEq).isTrue();
+        assertThat(actualNe).isFalse();
     }
 }

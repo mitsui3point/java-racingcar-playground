@@ -46,5 +46,17 @@ public class Car {
     public String print() {
         return name.print() + ":" + position.print();
     }
+
+    public Position greaterPosition(Car target) {
+        int compare = this.position.compare(target.position);
+        if (compare > 0) {
+            return position;
+        }
+        return target.position;
+    }
+
+    public boolean equalPosition(Position position) {
+        return this.position.equals(position);
+    }
 }
 

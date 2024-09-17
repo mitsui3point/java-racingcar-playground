@@ -47,4 +47,27 @@ public class CarsTest {
         assertThat(cars).extracting("cars").isEqualTo(expected);
     }
 
+    @Test
+    void 가장_멀리간_자동차들을_추려낸다() {
+        Cars cars = new Cars("pobi,crong,honux");
+        cars.eachCar(car -> {
+            if (car.print().contains("pobi")) {
+                car.move(() -> 4);
+                return;
+            }
+            if (car.print().contains("crong")) {
+                car.move(() -> 4);
+                return;
+            }
+            car.move(() -> 3);
+        });
+
+        Cars actual = cars.getMostMoveCars();
+        List<Car> expected = Arrays.asList(
+                new Car("pobi", 1),
+                new Car("crong", 1)
+        );
+
+        assertThat(actual).extracting("cars").isEqualTo(expected);
+    }
 }

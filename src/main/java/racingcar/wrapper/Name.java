@@ -16,9 +16,12 @@ public class Name {
         this.name = name;
     }
 
+    public String print() {
+        return name;
+    }
+
     @Override
     public boolean equals(Object o) {
-
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Name name1 = (Name) o;
@@ -28,9 +31,5 @@ public class Name {
     @Override
     public int hashCode() {
         return Objects.hash(name);
-    }
-
-    public String print() {
-        return name;
     }
 }

@@ -18,4 +18,8 @@ public class RacingGame {
     public void play(Consumer<Car> eachConsumer) {
         round.eachRoundPlay(() -> cars.eachCar(eachConsumer));
     }
+
+    public Cars winners() {
+        return cars.getMostMoveCars();
+    }
 }
