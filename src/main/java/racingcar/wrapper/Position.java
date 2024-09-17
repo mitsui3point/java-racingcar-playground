@@ -1,9 +1,7 @@
 package racingcar.wrapper;
 
-import racingcar.model.Car;
 import racingcar.util.CurrentRoundPrinter;
 
-import java.util.List;
 import java.util.Objects;
 
 public class Position {
