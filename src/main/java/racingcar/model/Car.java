@@ -30,21 +30,12 @@ public class Car {
         }
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Car car = (Car) o;
-        return Objects.equals(name, car.name) && Objects.equals(position, car.position);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, position);
-    }
-
     public String print() {
         return name.print() + ":" + position.print();
+    }
+
+    public String printName() {
+        return name.print();
     }
 
     public Position greaterPosition(Car target) {
@@ -58,5 +49,19 @@ public class Car {
     public boolean equalPosition(Position position) {
         return this.position.equals(position);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return Objects.equals(name, car.name) && Objects.equals(position, car.position);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, position);
+    }
+
 }
 

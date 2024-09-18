@@ -16,10 +16,14 @@ public class RacingGame {
     }
 
     public void play(Consumer<Car> eachConsumer) {
-        round.eachRoundPlay(() -> cars.eachCar(eachConsumer));
+        round.eachRoundPlay(() -> {
+            cars.eachCar(eachConsumer);
+            System.out.println();
+        });
     }
 
     public Cars winners() {
         return cars.getMostMoveCars();
     }
+
 }
